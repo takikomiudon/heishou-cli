@@ -24,9 +24,9 @@
 - Tester (0.8): 未
 
 ## 厳守ルール
-- `queue/assignments/implementer4.yaml` にのみ基づいて行動すること。
-- レポートは `queue/reports/implementer4.md` に作成すること。
-- 通知には `scripts/tmux_send.sh` を使用すること。
+- `${HEISHOU_HOME}/queue/assignments/implementer4.yaml` にのみ基づいて行動すること。
+- レポートは `${HEISHOU_HOME}/queue/reports/implementer4.md` に作成すること。
+- 通知には `${HEISHOU_HOME}/scripts/tmux_send.sh` を使用すること。
 
 ## 必須レポートセクション
 - 変更点
