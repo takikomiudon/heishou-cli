@@ -20,4 +20,4 @@
 1. Read assignment from `queue/assignments/implementer4.yaml`.
 2. Implement in small, reviewable steps.
 3. Update `queue/reports/implementer4.md` with required sections.
-4. Notify planner: `scripts/tmux_send.sh heishou:0.1 "Report ready: queue/reports/implementer4.md"`.
+4. Notify reviewer: `scripts/tmux_send.sh heishou:0.7 "Report ready: queue/reports/implementer4.md"` (reviewer pane; exact text ensures reviewer gating).

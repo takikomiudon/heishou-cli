@@ -10,4 +10,24 @@ while [ -h "$SOURCE" ]; do
   esac
 done
 SCRIPT_DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
-exec "${SCRIPT_DIR}/heishou_departure.sh" "$@"
+unset TMUX_TMPDIR
+
+case "$1" in
+  attach)
+    shift
+    exec tmux attach -t heishou "$@"
+    ;;
+  kill)
+    shift
+    tmux kill-session -t heishou || true
+    exit 0
+    ;;
+  ls)
+    shift
+    exec tmux ls "$@"
+    ;;
+  *)
+    "${SCRIPT_DIR}/heishou_departure.sh" "$@"
+    exec tmux attach -t heishou
+    ;;
+esac

@@ -34,10 +34,7 @@ if [ ! -d "$CODEX_ROOT" ]; then
   CODEX_ROOT="${SCRIPT_DIR}/codex_home"
 fi
 
-# Use a workspace-local tmux socket so agents in sandbox can access it.
-TMUX_SOCKET_DIR="${SCRIPT_DIR}/.tmux"
-mkdir -p "$TMUX_SOCKET_DIR"
-export TMUX_TMPDIR="$TMUX_SOCKET_DIR"
+unset TMUX_TMPDIR
 
 # Kill existing sessions
 log "Cleaning old tmux sessions"
@@ -156,15 +153,15 @@ for i in {0..8}; do
 if [ "$SETUP_ONLY" = false ]; then
   log "Launching Codex CLI"
 
-  "$TMUX_SEND" "heishou:0.0" "CODEX_HOME=${CODEX_ROOT}/manager codex --sandbox read-only --ask-for-approval never"
-  "$TMUX_SEND" "heishou:0.1" "CODEX_HOME=${CODEX_ROOT}/planner codex --sandbox workspace-write --ask-for-approval never"
-  "$TMUX_SEND" "heishou:0.2" "CODEX_HOME=${CODEX_ROOT}/navigator codex --sandbox read-only --ask-for-approval never"
-  "$TMUX_SEND" "heishou:0.3" "CODEX_HOME=${CODEX_ROOT}/implementer1 codex --sandbox workspace-write --ask-for-approval never"
-  "$TMUX_SEND" "heishou:0.4" "CODEX_HOME=${CODEX_ROOT}/implementer2 codex --sandbox workspace-write --ask-for-approval never"
-  "$TMUX_SEND" "heishou:0.5" "CODEX_HOME=${CODEX_ROOT}/implementer3 gemini --sandbox --approval-mode yolo"
-  "$TMUX_SEND" "heishou:0.6" "CODEX_HOME=${CODEX_ROOT}/implementer4 gemini --sandbox --approval-mode yolo"
-  "$TMUX_SEND" "heishou:0.7" "CODEX_HOME=${CODEX_ROOT}/reviewer codex --sandbox read-only --ask-for-approval never"
-  "$TMUX_SEND" "heishou:0.8" "CODEX_HOME=${CODEX_ROOT}/tester codex --sandbox workspace-write --ask-for-approval never"
+  "$TMUX_SEND" "heishou:0.0" "CODEX_HOME=${CODEX_ROOT}/manager codex --sandbox danger-full-access --ask-for-approval never"
+  "$TMUX_SEND" "heishou:0.1" "CODEX_HOME=${CODEX_ROOT}/planner codex --sandbox danger-full-access --ask-for-approval never"
+  "$TMUX_SEND" "heishou:0.2" "CODEX_HOME=${CODEX_ROOT}/navigator codex --sandbox danger-full-access --ask-for-approval never"
+  "$TMUX_SEND" "heishou:0.3" "CODEX_HOME=${CODEX_ROOT}/implementer1 codex --sandbox danger-full-access --ask-for-approval never"
+  "$TMUX_SEND" "heishou:0.4" "CODEX_HOME=${CODEX_ROOT}/implementer2 codex --sandbox danger-full-access --ask-for-approval never"
+  "$TMUX_SEND" "heishou:0.5" "CODEX_HOME=${CODEX_ROOT}/implementer3 gemini --approval-mode yolo"
+  "$TMUX_SEND" "heishou:0.6" "CODEX_HOME=${CODEX_ROOT}/implementer4 gemini --approval-mode yolo"
+  "$TMUX_SEND" "heishou:0.7" "CODEX_HOME=${CODEX_ROOT}/reviewer codex --sandbox danger-full-access --ask-for-approval never"
+  "$TMUX_SEND" "heishou:0.8" "CODEX_HOME=${CODEX_ROOT}/tester codex --sandbox danger-full-access --ask-for-approval never"
 
   sleep 1
   "$TMUX_SEND" "heishou:0.0" "Read instructions/manager.md, declare readiness, then wait for orders."
