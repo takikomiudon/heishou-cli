@@ -20,4 +20,4 @@
 1. Read assignment from `queue/assignments/tester.yaml`.
 2. Run tests or manual checks.
 3. Report in `queue/reports/tester.md` using required format.
-4. Notify planner: `scripts/tmux_send.sh heishou-workers:0.0 "Report ready: queue/reports/tester.md"`.
+4. Notify planner: `scripts/tmux_send.sh heishou:0.1 "Report ready: queue/reports/tester.md"`.

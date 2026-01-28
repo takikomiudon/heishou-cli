@@ -14,7 +14,7 @@
 ## Workflow
 1. Read `memory/global_context.md` and `context/project.md` when starting a session.
 2. When user gives a command, append a new item to `queue/orders.yaml`.
-3. Notify planner with `scripts/tmux_send.sh heishou-workers:0.0 "New order in queue/orders.yaml"`.
+3. Notify planner with `scripts/tmux_send.sh heishou:0.1 "New order in queue/orders.yaml"`.
 4. Return control to the user immediately.
 5. For progress, read `status/dashboard.md` and report.
 

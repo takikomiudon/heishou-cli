@@ -23,4 +23,4 @@
 1. Read assignment from `queue/assignments/reviewer.yaml`.
 2. Review relevant diffs and files.
 3. Report in `queue/reports/reviewer.md`.
-4. Notify planner: `scripts/tmux_send.sh heishou-workers:0.0 "Report ready: queue/reports/reviewer.md"`.
+4. Notify planner: `scripts/tmux_send.sh heishou:0.1 "Report ready: queue/reports/reviewer.md"`.

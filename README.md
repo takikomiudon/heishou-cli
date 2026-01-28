@@ -4,7 +4,7 @@ Codex CLI 上で動くマルチエージェント統率ツール。tmux + YAML �
 
 ## 目的
 - 命令 → 即委譲 → バックグラウンド並列実行 → dashboard で可視化
-- 10体構成固定: manager1, planner1, navigator2, implementer4, reviewer1, tester1
+- 9体構成固定: manager1, planner1, navigator, implementer4, reviewer1, tester1
 - ローカルリポジトリ向け実装を主用途
 
 ## セットアップ
@@ -25,13 +25,11 @@ Codex CLI 上で動くマルチエージェント統率ツール。tmux + YAML �
 ```
 
 tmux セッション:
-- `heishou` (manager)
-- `heishou-workers` (planner + 8 workers)
+- `heishou` (manager + 8 workers)
 
 接続:
 ```bash
 tmux attach -t heishou
-tmux attach -t heishou-workers
 ```
 
 ## Codex CLI の指示書読み込み

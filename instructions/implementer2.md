@@ -20,4 +20,4 @@
 1. Read assignment from `queue/assignments/implementer2.yaml`.
 2. Implement in small, reviewable steps.
 3. Update `queue/reports/implementer2.md` with required sections.
-4. Notify planner: `scripts/tmux_send.sh heishou-workers:0.0 "Report ready: queue/reports/implementer2.md"`.
+4. Notify planner: `scripts/tmux_send.sh heishou:0.1 "Report ready: queue/reports/implementer2.md"`.
