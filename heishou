@@ -27,7 +27,7 @@ case "$1" in
     exec tmux ls "$@"
     ;;
   *)
-    "${SCRIPT_DIR}/heishou_departure.sh" "$@"
+    "${SCRIPT_DIR}/heishou_departure.sh" "$(pwd)" "$@"
     exec tmux attach -t heishou
     ;;
 esac

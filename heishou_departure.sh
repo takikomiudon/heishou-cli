@@ -5,6 +5,12 @@ set -e
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
 
+TARGET_DIR="$SCRIPT_DIR"
+if [[ -d "$1" && "$1" != -* ]]; then
+  TARGET_DIR="$1"
+  shift
+fi
+
 SETUP_ONLY=false
 
 while [[ $# -gt 0 ]]; do
@@ -146,7 +152,12 @@ PANE_TITLES=("manager" "planner1" "navigator" "implementer1" "implementer2" "imp
 
 for i in {0..8}; do
   tmux select-pane -t "heishou:0.$i" -T "${PANE_TITLES[$i]}"
-  "$TMUX_SEND" "heishou:0.$i" "cd ${SCRIPT_DIR} && clear"
+  if [ $i -le 1 ]; then
+    WORKDIR="${SCRIPT_DIR}"
+  else
+    WORKDIR="${TARGET_DIR}"
+  fi
+  "$TMUX_SEND" "heishou:0.$i" "export HEISHOU_HOME=${SCRIPT_DIR} && cd ${WORKDIR} && clear"
  done
 
 # Launch codex unless setup-only
@@ -165,15 +176,15 @@ if [ "$SETUP_ONLY" = false ]; then
 
   sleep 10
 
-  "$TMUX_SEND" "heishou:0.0" "Read instructions/manager.md, declare readiness, then wait for orders."
-  "$TMUX_SEND" "heishou:0.1" "Read instructions/planner.md, declare readiness, then wait for orders."
-  "$TMUX_SEND" "heishou:0.2" "Read instructions/navigator.md, declare readiness, then wait for assignments."
-  "$TMUX_SEND" "heishou:0.3" "Read instructions/implementer1.md, declare readiness, then wait for assignments."
-  "$TMUX_SEND" "heishou:0.4" "Read instructions/implementer2.md, declare readiness, then wait for assignments."
-  "$TMUX_SEND" "heishou:0.5" "Read instructions/implementer3.md, declare readiness, then wait for assignments."
-  "$TMUX_SEND" "heishou:0.6" "Read instructions/implementer4.md, declare readiness, then wait for assignments."
-  "$TMUX_SEND" "heishou:0.7" "Read instructions/reviewer.md, declare readiness, then wait for assignments."
-  "$TMUX_SEND" "heishou:0.8" "Read instructions/tester.md, declare readiness, then wait for assignments."
+  "$TMUX_SEND" "heishou:0.0" "Read \${HEISHOU_HOME}/instructions/manager.md, declare readiness, then wait for orders."
+  "$TMUX_SEND" "heishou:0.1" "Read \${HEISHOU_HOME}/instructions/planner.md, declare readiness, then wait for orders."
+  "$TMUX_SEND" "heishou:0.2" "Read \${HEISHOU_HOME}/instructions/navigator.md, declare readiness, then wait for assignments."
+  "$TMUX_SEND" "heishou:0.3" "Read \${HEISHOU_HOME}/instructions/implementer1.md, declare readiness, then wait for assignments."
+  "$TMUX_SEND" "heishou:0.4" "Read \${HEISHOU_HOME}/instructions/implementer2.md, declare readiness, then wait for assignments."
+  "$TMUX_SEND" "heishou:0.5" "Read \${HEISHOU_HOME}/instructions/implementer3.md, declare readiness, then wait for assignments."
+  "$TMUX_SEND" "heishou:0.6" "Read \${HEISHOU_HOME}/instructions/implementer4.md, declare readiness, then wait for assignments."
+  "$TMUX_SEND" "heishou:0.7" "Read \${HEISHOU_HOME}/instructions/reviewer.md, declare readiness, then wait for assignments."
+  "$TMUX_SEND" "heishou:0.8" "Read \${HEISHOU_HOME}/instructions/tester.md, declare readiness, then wait for assignments."
 fi
 
 log "Done"
