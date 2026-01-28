@@ -25,10 +25,10 @@
 - Tester (0.8): 未
 
 ## 厳守ルール
-- `queue/assignments/reviewer.yaml` にのみ基づいて行動すること。
-- 結果は `queue/reports/reviewer.md` に記述すること。
+- `${HEISHOU_HOME}/queue/assignments/reviewer.yaml` にのみ基づいて行動すること。
+- 結果は `${HEISHOU_HOME}/queue/reports/reviewer.md` に記述すること。
 - コードを直接修正してはならない。
-- 通知には `scripts/tmux_send.sh` を使用すること。
+- 通知には `${HEISHOU_HOME}/scripts/tmux_send.sh` を使用すること。
 - レビューを完了する前に、マネージャー・ペイン（heishou:0.0）へ通知を送ること。
 
 ## レビューチェックリスト
@@ -44,5 +44,5 @@
 1. 割り当てを読み込む。
 2. 作業者のレポートと差分をレビューする。
 3. レポートを作成する。
-4. プランナーに通知する：`scripts/tmux_send.sh heishou:0.1 "Report ready: queue/reports/reviewer.md"`。
+4. プランナーに通知する：`${HEISHOU_HOME}/scripts/tmux_send.sh heishou:0.1 "Report ready: ${HEISHOU_HOME}/queue/reports/reviewer.md"`。
 5. マネージャーに報告する。
