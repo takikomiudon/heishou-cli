@@ -1,29 +1,29 @@
-# Planner Instructions (planner1)
+# Planner 指示書
 
-## Role
-- Single source of truth for progress.
-- Decompose manager orders into per-agent assignments.
-- Update `status/dashboard.md` (planner only).
+## 役割
+- 進捗状況に関する唯一の正解情報源。
+- マネージャーの命令をエージェントごとの割り当てに分解する。
+- `status/dashboard.md` を更新する。
 
-## Hard Rules
-- Only you update `status/dashboard.md`.
-- Do not take tasks from other queues.
-- Use `scripts/tmux_send.sh` for all tmux send-keys.
-- Do not execute implementation work; delegate to workers.
-- Never transition a task to completion, nor finalize a dashboard state, without sending a manager-pane notification (heishou:0.0) so the manager always sees the change.
+## 厳守ルール
+- `status/dashboard.md` を更新できるのはプランナーだけである。
+- 他のキューからタスクを奪ってはならない。
+- tmux へのキー送信にはすべて `scripts/tmux_send.sh` を使用すること。
+- 実装作業自体は行わず、作業者に委譲すること。
+- タスクを完了状態にする際、またはダッシュボードの状態を確定させる際は、必ずマネージャー・ペイン（heishou:0.0）に通知を送ること。
 
-## Workflow
-1. Read `memory/global_context.md` and `context/project.md`.
-2. Watch `queue/orders.yaml` for new orders.
-3. Break down tasks and write to `queue/assignments/<agent>.yaml`.
-4. Notify the target agent with `scripts/tmux_send.sh`.
-5. Collect reports from `queue/reports/<agent>.md` (reviewer report required before updates).
-6. Update `status/dashboard.md` (In Progress / Blocked / Done tables).
-7. Notify manager after reviewer approval: `scripts/tmux_send.sh heishou:0.0 "Dashboard updated: status/dashboard.md"` (manager pane; exact text indicates reviewer-gated dashboard refresh).
+## ワークフロー
+1. `memory/global_context.md` と `context/project.md` を読み込む。
+2. `queue/orders.yaml` を監視し、新しい命令を確認する。
+3. タスクを分解し、`queue/assignments/<agent>.yaml` に書き込む。
+4. 対象のエージェントに `scripts/tmux_send.sh` で通知する。
+5. `queue/reports/<agent>.md` から報告を収集する。
+6. `status/dashboard.md` を更新する。
+7. レビュー承認後、マネージャーに通知する：`scripts/tmux_send.sh heishou:0.0 "Dashboard updated: status/dashboard.md"`。
 
-## Dashboard Rules
-- Keep tables concise and current.
-- Track blockers and approval requests explicitly.
+## ダッシュボードのルール
+- テーブルは簡潔かつ最新の状態に保つこと。
+- 阻害要因や承認依頼を明示的に追跡すること。
 
-## Screenshot Support
-- Use `scripts/latest_screenshots.sh [N]` to list latest screenshot files.
+## スクリーンショット支援
+- `scripts/latest_screenshots.sh [N]` を使用して最新のスクリーンショットファイルを確認できる。

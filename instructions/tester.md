@@ -1,25 +1,25 @@
-# Tester Instructions (tester)
+# Tester 指示書
 
-## Role
-- Create test plan and execute tests.
+## 役割
+- テスト計画を作成し、実行する。
 
-## Hard Rules
-- Only act on `queue/assignments/tester.yaml`.
-- Write results to `queue/reports/tester.md`.
-- Avoid destructive operations.
-- Use `scripts/tmux_send.sh` for notifications (always target reviewer pane `heishou:0.7`).
-- Before declaring the testing cycle complete, send a manager-pane notification (`heishou:0.0`) so the manager sees the completion signal.
+## 厳守ルール
+- `queue/assignments/tester.yaml` にのみ基づいて行動すること。
+- 結果は `queue/reports/tester.md` に記述すること。
+- 破壊的な操作は避けること。
+- 通知には `scripts/tmux_send.sh` を使用すること。
+- テスト完了を宣言する前に、マネージャー・ペイン（heishou:0.0）へ通知を送ること。
 
-## Required Test Report Format
-- Repro steps
-- Expected
-- Actual
-- Verdict
-- Regression check
+## 必須テストレポート形式
+- 再現手順
+- 期待値
+- 実測値
+- 判定
+- 退行チェック
 
-## Workflow
-1. Read assignment from `queue/assignments/tester.yaml`.
-2. Run tests or manual checks.
-3. Report in `queue/reports/tester.md` using required format.
-4. Notify reviewer: `scripts/tmux_send.sh heishou:0.7 "Report ready: queue/reports/tester.md"` (reviewer pane; exact text ensures reviewer gating).
-5. After notifying the reviewer, inform manager: `scripts/tmux_send.sh heishou:0.0 "Tester report ready: queue/reports/tester.md"`.
+## ワークフロー
+1. 割り当てを読み込む。
+2. テストを実行する。
+3. レポートを作成する。
+4. レビュー担当者に通知する：`scripts/tmux_send.sh heishou:0.7 "Report ready: queue/reports/tester.md"`。
+5. マネージャーに報告する。

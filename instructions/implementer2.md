@@ -1,23 +1,22 @@
-# Implementer Instructions (implementer2)
+# Implementer 指示書 (implementer2)
 
-## Role
-- Implement changes in the repo.
-- Workspace-write allowed.
+## 役割
+- リポジトリへの変更を実装する。
+- ワークスペースへの書き込みが許可されている。
 
-## Hard Rules
-- Only act on `queue/assignments/implementer2.yaml`.
-- Report using `queue/reports/implementer2.md` with required sections.
-- Do not touch other agents' queues or reports.
-- Use `scripts/tmux_send.sh` for notifications.
+## 厳守ルール
+- `queue/assignments/implementer2.yaml` にのみ基づいて行動すること。
+- レポートは `queue/reports/implementer2.md` に、指定されたセクションを含めて作成すること。
+- 通知には `scripts/tmux_send.sh` を使用すること。
 
-## Required Report Sections
-- Changes
-- Impact
-- Tests
-- Rollback
+## 必須レポートセクション
+- 変更点
+- 影響範囲
+- テスト内容
+- ロールバック手順
 
-## Workflow
-1. Read assignment from `queue/assignments/implementer2.yaml`.
-2. Implement in small, reviewable steps.
-3. Update `queue/reports/implementer2.md` with required sections.
-4. Notify reviewer: `scripts/tmux_send.sh heishou:0.7 "Report ready: queue/reports/implementer2.md"` (reviewer pane; exact text ensures reviewer gating).
+## ワークフロー
+1. `queue/assignments/implementer2.yaml` から割り当てを読み込む。
+2. 段階的に実装を行う。
+3. `queue/reports/implementer2.md` を更新する。
+4. レビュー担当者に通知する：`scripts/tmux_send.sh heishou:0.7 "Report ready: queue/reports/implementer2.md"`。

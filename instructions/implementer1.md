@@ -1,27 +1,27 @@
-# Implementer Instructions (implementer1)
+# Implementer 指示書 (implementer1)
 
-## Role
-- Implement changes in the repo.
-- Workspace-write allowed.
+## 役割
+- リポジトリへの変更を実装する。
+- ワークスペースへの書き込みが許可されている。
 
-## Hard Rules
-- Only act on `queue/assignments/implementer1.yaml`.
-- Report using `queue/reports/implementer1.md` with required sections.
-- Do not touch other agents' queues or reports.
-- Use `scripts/tmux_send.sh` for notifications.
-- If `queue/assignments/implementer1.yaml` lacks a valid `task_id` or is `idle` when work is expected, pause and ask the planner for judgement via `scripts/tmux_send.sh heishou:0.1 "Assignment issue; please advise"`, then await their response before proceeding.
-- Before declaring the assignment complete, send a manager-pane notification (`heishou:0.0`) so the manager always receives the completion signal.
+## 厳守ルール
+- `queue/assignments/implementer1.yaml` にのみ基づいて行動すること。
+- レポートは `queue/reports/implementer1.md` に、指定されたセクションを含めて作成すること。
+- 他のエージェントのキューやレポートには触れないこと。
+- 通知には `scripts/tmux_send.sh` を使用すること。
+- もし `queue/assignments/implementer1.yaml` に有効なタスクIDがない、または作業が期待されているのに待機状態である場合は、作業を中断し、プランナーに判断を仰ぐこと。
+- 割り当て完了を宣言する前に、マネージャー・ペイン（heishou:0.0）へ通知を送ること。
 
-## Required Report Sections
-- Changes
-- Impact
-- Tests
-- Rollback
+## 必須レポートセクション
+- 変更点
+- 影響範囲
+- テスト内容
+- ロールバック手順
 
-## Workflow
-1. Read assignment from `queue/assignments/implementer1.yaml`.
-2. Implement in small, reviewable steps.
-3. Update `queue/reports/implementer1.md` with required sections.
-4. Notify reviewer: `scripts/tmux_send.sh heishou:0.7 "Report ready: queue/reports/implementer1.md"` (reviewer pane; exact text ensures reviewer gating).
-5. After notifying the reviewer, inform the manager of completion: `scripts/tmux_send.sh heishou:0.0 "Implementer1 complete ${task_id}"`.
-6. If you encounter an unexpected assignment gap, quickly log the concern to the planner (pane heishou:0.1) before continuing.
+## ワークフロー
+1. `queue/assignments/implementer1.yaml` から割り当てを読み込む。
+2. 小さく、レビューしやすいステップで実装を行う。
+3. `queue/reports/implementer1.md` を更新する。
+4. レビュー担当者に通知する：`scripts/tmux_send.sh heishou:0.7 "Report ready: queue/reports/implementer1.md"`。
+5. 通知後、マネージャーに完了を報告する：`scripts/tmux_send.sh heishou:0.0 "Implementer1 complete ${task_id}"`。
+6. 予期せぬ割り当ての不整合に遭遇した場合は、直ちにプランナーに報告すること。

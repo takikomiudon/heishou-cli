@@ -153,17 +153,18 @@ for i in {0..8}; do
 if [ "$SETUP_ONLY" = false ]; then
   log "Launching Codex CLI"
 
-  "$TMUX_SEND" "heishou:0.0" "CODEX_HOME=${CODEX_ROOT}/manager codex --sandbox danger-full-access --ask-for-approval never"
-  "$TMUX_SEND" "heishou:0.1" "CODEX_HOME=${CODEX_ROOT}/planner codex --sandbox danger-full-access --ask-for-approval never"
-  "$TMUX_SEND" "heishou:0.2" "CODEX_HOME=${CODEX_ROOT}/navigator codex --sandbox danger-full-access --ask-for-approval never"
-  "$TMUX_SEND" "heishou:0.3" "CODEX_HOME=${CODEX_ROOT}/implementer1 codex --sandbox danger-full-access --ask-for-approval never"
-  "$TMUX_SEND" "heishou:0.4" "CODEX_HOME=${CODEX_ROOT}/implementer2 codex --sandbox danger-full-access --ask-for-approval never"
-  "$TMUX_SEND" "heishou:0.5" "CODEX_HOME=${CODEX_ROOT}/implementer3 gemini --approval-mode yolo"
-  "$TMUX_SEND" "heishou:0.6" "CODEX_HOME=${CODEX_ROOT}/implementer4 gemini --approval-mode yolo"
-  "$TMUX_SEND" "heishou:0.7" "CODEX_HOME=${CODEX_ROOT}/reviewer codex --sandbox danger-full-access --ask-for-approval never"
-  "$TMUX_SEND" "heishou:0.8" "CODEX_HOME=${CODEX_ROOT}/tester codex --sandbox danger-full-access --ask-for-approval never"
+  "$TMUX_SEND" "heishou:0.0" "CODEX_HOME=${CODEX_ROOT}/manager gemini --approval-mode yolo"
+  "$TMUX_SEND" "heishou:0.1" "CODEX_HOME=${CODEX_ROOT}/planner gemini --approval-mode yolo"
+  "$TMUX_SEND" "heishou:0.2" "CODEX_HOME=${CODEX_ROOT}/navigator gemini --approval-mode yolo"
+  "$TMUX_SEND" "heishou:0.3" "CODEX_HOME=${CODEX_ROOT}/implementer1 gemini --approval-mode yolo"
+  "$TMUX_SEND" "heishou:0.4" "CODEX_HOME=${CODEX_ROOT}/implementer2 gemini --approval-mode yolo"
+  "$TMUX_SEND" "heishou:0.5" "CODEX_HOME=${CODEX_ROOT}/implementer3 codex --sandbox danger-full-access --ask-for-approval never"
+  "$TMUX_SEND" "heishou:0.6" "CODEX_HOME=${CODEX_ROOT}/implementer4 codex --sandbox danger-full-access --ask-for-approval never"
+  "$TMUX_SEND" "heishou:0.7" "CODEX_HOME=${CODEX_ROOT}/reviewer gemini --approval-mode yolo"
+  "$TMUX_SEND" "heishou:0.8" "CODEX_HOME=${CODEX_ROOT}/tester gemini --approval-mode yolo"
 
-  sleep 1
+  sleep 10
+
   "$TMUX_SEND" "heishou:0.0" "Read instructions/manager.md, declare readiness, then wait for orders."
   "$TMUX_SEND" "heishou:0.1" "Read instructions/planner.md, declare readiness, then wait for orders."
   "$TMUX_SEND" "heishou:0.2" "Read instructions/navigator.md, declare readiness, then wait for assignments."
